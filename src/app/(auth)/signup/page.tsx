@@ -8,7 +8,6 @@ import { toast } from "sonner";
 
 export const dynamic = "force-dynamic";
 export default function SignupPage() {
-  const supabase = createSupabaseBrowserClient();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
@@ -17,6 +16,7 @@ export default function SignupPage() {
   const onEmailSignup = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
+    const supabase = createSupabaseBrowserClient();
     const { error } = await supabase.auth.signUp({
       email,
       password,
@@ -30,6 +30,7 @@ export default function SignupPage() {
   };
 
   const onGoogle = async () => {
+    const supabase = createSupabaseBrowserClient();
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {

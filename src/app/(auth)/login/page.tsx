@@ -8,7 +8,6 @@ import { toast } from "sonner";
 
 export const dynamic = "force-dynamic";
 export default function LoginPage() {
-  const supabase = createSupabaseBrowserClient();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -16,6 +15,7 @@ export default function LoginPage() {
   const onEmailLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
+    const supabase = createSupabaseBrowserClient();
     const { error } = await supabase.auth.signInWithPassword({ email, password });
     if (error) toast.error(error.message);
     else window.location.href = "/post-auth";
@@ -23,6 +23,7 @@ export default function LoginPage() {
   };
 
   const onGoogle = async () => {
+    const supabase = createSupabaseBrowserClient();
     const { data, error } = await supabase.auth.signInWithOAuth({
       provider: "google",
       options: {
