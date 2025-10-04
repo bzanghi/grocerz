@@ -16,7 +16,7 @@ export default function DashboardPage() {
   const [shoppingMode, setShoppingMode] = React.useState(false);
   return (
     <div className="flex flex-col gap-3">
-      <div className="sticky top-0 z-10 -mx-4 mb-2 bg-white p-4">
+      <div className="sticky top-0 z-10 -mx-4 mb-2 glass p-4">
         <div className="flex items-center justify-between">
           <h1 className="text-xl font-semibold">Shopping List</h1>
           <div className="flex items-center gap-3">
@@ -39,11 +39,17 @@ export default function DashboardPage() {
       </div>
       {!shoppingMode && (
         <>
-          <AddItemForm />
-          <QuickHistory />
+          <div className="glass elev-1 rounded-xl p-3">
+            <AddItemForm />
+          </div>
+          <div className="glass elev-1 rounded-xl">
+            <QuickHistory />
+          </div>
         </>
       )}
-      <ShoppingList shoppingMode={shoppingMode} />
+      <div className="glass elev-1 rounded-xl p-2">
+        <ShoppingList shoppingMode={shoppingMode} />
+      </div>
     </div>
   );
 }

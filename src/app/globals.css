@@ -44,7 +44,8 @@
 }
 
 :root {
-  --radius: 0.625rem;
+  /* MD3-ish rounded corners */
+  --radius: 0.75rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
@@ -119,4 +120,22 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Utilities: Material Design 3 inspired glass surfaces for dark mode with subtle blur */
+@layer utilities {
+  .glass {
+    /* light */
+    @apply bg-white/70 border border-black/5 shadow-sm backdrop-blur-md;
+    /* dark */
+    @apply dark:bg-white/10 dark:border-white/10 dark:shadow-[0_8px_24px_-12px_rgba(0,0,0,0.6)];
+  }
+  .glass-strong {
+    @apply bg-white/80 border border-black/5 shadow-md backdrop-blur-lg;
+    @apply dark:bg-white/12 dark:border-white/10 dark:shadow-[0_12px_40px_-16px_rgba(0,0,0,0.8)];
+  }
+  /* Elevation helpers approximating MD3 */
+  .elev-1 { @apply shadow-[0_1px_2px_0_rgba(0,0,0,0.06),0_1px_3px_1px_rgba(0,0,0,0.08)]; }
+  .elev-2 { @apply shadow-[0_2px_6px_-1px_rgba(0,0,0,0.1),0_3px_10px_-2px_rgba(0,0,0,0.1)]; }
+  .elev-3 { @apply shadow-[0_8px_24px_-12px_rgba(0,0,0,0.25)]; }
 }
