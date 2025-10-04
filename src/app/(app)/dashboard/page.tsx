@@ -4,6 +4,7 @@ import Link from "next/link";
 import AddItemForm from "@/components/shopping/AddItemForm";
 import NextDynamic from "next/dynamic";
 import { Switch } from "@/components/ui/switch";
+import QuickHistory from "@/components/shopping/QuickHistory";
 
 const ShoppingList = NextDynamic(() => import("@/components/shopping/ShoppingList"), {
   ssr: false,
@@ -27,13 +28,21 @@ export default function DashboardPage() {
             <Link href="/pantry" className="text-[#10B981] underline">
               Pantry
             </Link>
+            <Link href="/templates" className="text-[#10B981] underline">
+              Templates
+            </Link>
             <Link href="/setup" className="text-[#10B981] underline">
               Setup
             </Link>
           </div>
         </div>
       </div>
-      {!shoppingMode && <AddItemForm />}
+      {!shoppingMode && (
+        <>
+          <AddItemForm />
+          <QuickHistory />
+        </>
+      )}
       <ShoppingList shoppingMode={shoppingMode} />
     </div>
   );
