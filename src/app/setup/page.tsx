@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 import { useRouter, useSearchParams } from "next/navigation";
 
+export const dynamic = "force-dynamic";
 export default function SetupPage() {
   // Avoid SSR errors when env is missing by forcing dynamic
   // and keeping this page fully client-side
@@ -28,7 +29,7 @@ export default function SetupPage() {
     if (error) toast.error(error.message);
     else {
       toast.success("Joined household!");
-      router.replace("/");
+      router.replace("/dashboard");
     }
     setLoading(false);
   };
@@ -61,7 +62,7 @@ export default function SetupPage() {
     if (updErr) toast.error(updErr.message);
     else {
       toast.success("Household created!");
-      router.replace("/");
+      router.replace("/dashboard");
     }
     setLoading(false);
   };
