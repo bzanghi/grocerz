@@ -111,7 +111,7 @@ export default function MealDetailPage() {
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="sticky top-0 z-10 -mx-4 bg-white p-4">
+      <div className="sticky top-0 z-10 -mx-4 glass p-4 elev-2">
         <div className="flex items-center justify-between">
           <h1 className="text-xl font-semibold">{meal.name}</h1>
           <Link href="/meals" className="text-[#10B981] underline">
@@ -120,7 +120,7 @@ export default function MealDetailPage() {
         </div>
       </div>
 
-      <div className="rounded-lg border p-3">
+      <div className="rounded-xl glass p-3 elev-1">
         <div className="mb-2 text-sm text-zinc-600">Ingredients (scaled for 5)</div>
         <ul className="flex flex-col divide-y">
           {ingredients.map((ing) => (
@@ -137,7 +137,7 @@ export default function MealDetailPage() {
         </ul>
       </div>
 
-      <div className="sticky bottom-4 z-10 -mx-4 bg-white/70 p-4 backdrop-blur supports-[backdrop-filter]:bg-white/50">
+      <div className="sticky bottom-4 z-10 -mx-4 glass-strong p-4">
         <Button className="h-12 w-full rounded-lg bg-[#10B981] text-white hover:bg-[#0EA371]" onClick={addToList}>
           Add All Ingredients to List (for 5)
         </Button>
