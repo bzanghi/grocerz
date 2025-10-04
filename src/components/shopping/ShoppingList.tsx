@@ -81,7 +81,7 @@ export default function ShoppingList({ shoppingMode }: { shoppingMode?: boolean 
   const toggleChecked = async (item: ShoppingItem) => {
     const { error } = await supabase
       .from("shopping_items")
-      .update({ is_checked: !item.is_checked })
+      .update({ is_checked: !item.is_checked, completed_at: !item.is_checked ? new Date().toISOString() : null })
       .eq("id", item.id);
     if (error) toast.error(error.message);
   };

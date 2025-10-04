@@ -3,6 +3,7 @@ import * as React from "react";
 import { useParams } from "next/navigation";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 import type { Meal, MealIngredient, ShoppingItem } from "@/lib/types/db";
+import { mergeQuantities } from "@/lib/quantity";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
@@ -84,7 +85,7 @@ export default function MealDetailPage() {
         if (existing && existing.length > 0) {
           // Merge quantities: simple string concatenation if different
           const current = existing[0];
-          const newQty = mergeQuantityStrings(current.quantity ?? "", scaledQty);
+          const newQty = mergeQuantities(current.quantity, scaledQty);
           await supabase
             .from("shopping_items")
             .update({ quantity: newQty, category })
@@ -177,10 +178,4 @@ function roundSmart(n: number): string {
   return n.toFixed(2);
 }
 
-function mergeQuantityStrings(a: string, b: string): string {
-  if (!a) return b;
-  if (!b) return a;
-  if (a === b) return a;
-  // simple concat if different; future: parse units and sum
-  return `${a} + ${b}`;
-}
+// merge logic moved to lib/quantity
