@@ -7,6 +7,7 @@ import { toast } from "sonner";
 import { useRouter, useSearchParams } from "next/navigation";
 
 export const dynamic = "force-dynamic";
+export const fetchCache = "force-no-store";
 export default function SetupPage() {
   // Avoid SSR errors when env is missing by forcing dynamic
   // and keeping this page fully client-side
