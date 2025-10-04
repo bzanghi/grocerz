@@ -28,3 +28,14 @@ export type MealIngredient = {
   base_quantity: string | null; // for 4 servings
   category: string | null;
 };
+
+export type PantryItem = {
+  id: string;
+  household_id: string;
+  name: string;
+  quantity: string | null;
+  category: string | null;
+  on_hand: boolean;
+  updated_at: string;
+  updated_by: string | null;
+};

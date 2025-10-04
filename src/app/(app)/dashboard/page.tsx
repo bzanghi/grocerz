@@ -21,6 +21,12 @@ export default function DashboardPage() {
           <div className="flex items-center gap-3">
             <span className="text-sm text-zinc-600">Shopping Mode</span>
             <Switch checked={shoppingMode} onCheckedChange={(v) => setShoppingMode(Boolean(v))} />
+            <Link href="/meals" className="text-[#10B981] underline">
+              Meals
+            </Link>
+            <Link href="/pantry" className="text-[#10B981] underline">
+              Pantry
+            </Link>
             <Link href="/setup" className="text-[#10B981] underline">
               Setup
             </Link>

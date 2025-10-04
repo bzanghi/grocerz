@@ -64,6 +64,16 @@ export default function MealDetailPage() {
         const name = ing.ingredient_name;
         const category = ing.category ?? null;
 
+        // Pantry check: skip items that are on hand
+        const { data: pantry } = await supabase
+          .from("pantry_items")
+          .select("on_hand")
+          .eq("household_id", householdId)
+          .ilike("name", name);
+        if (pantry && pantry.some((p) => p.on_hand)) {
+          continue; // skip items we already have on hand
+        }
+
         // Check for existing item by name (case-insensitive) in this household
         const { data: existing } = await supabase
           .from("shopping_items")
