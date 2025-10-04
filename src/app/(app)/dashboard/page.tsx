@@ -1,5 +1,14 @@
+"use client";
 import Link from "next/link";
+import AddItemForm from "@/components/shopping/AddItemForm";
+import NextDynamic from "next/dynamic";
 
+const ShoppingList = NextDynamic(() => import("@/components/shopping/ShoppingList"), {
+  ssr: false,
+});
+
+export const dynamic = "force-dynamic";
+export const fetchCache = "force-no-store";
 export default function DashboardPage() {
   return (
     <div className="flex flex-col gap-3">
@@ -11,7 +20,8 @@ export default function DashboardPage() {
           </Link>
         </div>
       </div>
-      <p className="text-zinc-500">Authenticated area placeholder.</p>
+      <AddItemForm />
+      <ShoppingList />
     </div>
   );
 }
