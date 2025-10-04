@@ -11,7 +11,6 @@ export default function SetupPage() {
   // Avoid SSR errors when env is missing by forcing dynamic
   // and keeping this page fully client-side
   
-  const supabase = createSupabaseBrowserClient();
   const router = useRouter();
   const params = useSearchParams();
   const invite = params.get("invite");
@@ -25,6 +24,7 @@ export default function SetupPage() {
 
   const acceptInvite = async (token: string) => {
     setLoading(true);
+    const supabase = createSupabaseBrowserClient();
     const { error } = await supabase.rpc("accept_invite", { invite_token: token });
     if (error) toast.error(error.message);
     else {
@@ -36,6 +36,7 @@ export default function SetupPage() {
 
   const createHousehold = async () => {
     setLoading(true);
+    const supabase = createSupabaseBrowserClient();
     const {
       data: { user },
       error: userErr,
