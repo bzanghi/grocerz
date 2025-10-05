@@ -130,7 +130,6 @@ export default function ShoppingList({ shoppingMode }: { shoppingMode?: boolean 
 
   const total = items.reduce((sum, it) => sum + (it.estimated_price ?? 0), 0);
   const done = items.filter((i) => i.is_checked).length;
-  const progress = items.length ? Math.round((done / items.length) * 100) : 0;
 
   return (
     <div className="flex flex-col gap-4">

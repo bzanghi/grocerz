@@ -3,6 +3,7 @@ import * as React from "react";
 import Link from "next/link";
 import AddItemForm from "@/components/shopping/AddItemForm";
 import NextDynamic from "next/dynamic";
+import ThemeToggle from "@/components/ThemeToggle";
 import { Switch } from "@/components/ui/switch";
 import QuickHistory from "@/components/shopping/QuickHistory";
 
@@ -22,6 +23,7 @@ export default function DashboardPage() {
           <div className="flex items-center gap-3">
             <span className="text-sm text-zinc-600">Shopping Mode</span>
             <Switch checked={shoppingMode} onCheckedChange={(v) => setShoppingMode(Boolean(v))} />
+            <ThemeToggle />
             <Link href="/meals" className="text-[#10B981] underline">
               Meals
             </Link>
