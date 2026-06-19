@@ -42,7 +42,7 @@ export default function SignupPage() {
   };
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="glass elev-2 mx-auto w-full max-w-sm rounded-2xl p-6 flex flex-col gap-6">
       <div className="text-center">
         <h1 className="text-2xl font-semibold">Create an account</h1>
         <p className="text-sm text-zinc-500">Sign up to get started</p>
@@ -81,7 +81,7 @@ export default function SignupPage() {
       <Button
         variant="outline"
         onClick={onGoogle}
-        className="h-12 rounded-lg border-[#F59E0B] text-[#F59E0B] hover:bg-[#FFF7ED]"
+        className="h-12 rounded-lg"
       >
         Continue with Google
       </Button>
