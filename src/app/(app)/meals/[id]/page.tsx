@@ -83,7 +83,7 @@ export default function MealDetailPage() {
           .ilike("name", name);
 
         if (existing && existing.length > 0) {
-          // Merge quantities: simple string concatenation if different
+          // Merge quantities where possible, otherwise concatenate them.
           const current = existing[0];
           const newQty = mergeQuantities(current.quantity, scaledQty);
           await supabase
@@ -146,7 +146,7 @@ export default function MealDetailPage() {
   );
 }
 
-// Helpers: Simple quantity scaling and merging
+// Helpers: Simple quantity scaling
 function scaleQuantity(qty: string): string {
   if (!qty) return "";
   // Try to parse numbers (including fractions like 1/2)
@@ -177,5 +177,3 @@ function roundSmart(n: number): string {
   if (Math.abs(quarter * 4 - Math.round(quarter * 4)) < 1e-6) return `${Math.round(quarter * 4)}/4`;
   return n.toFixed(2);
 }
-
-// merge logic moved to lib/quantity

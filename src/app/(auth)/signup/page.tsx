@@ -78,11 +78,7 @@ export default function SignupPage() {
           {loading ? "Creating..." : "Sign up"}
         </Button>
       </form>
-      <Button
-        variant="outline"
-        onClick={onGoogle}
-        className="h-12 rounded-lg"
-      >
+      <Button variant="outline" onClick={onGoogle} className="h-12 rounded-lg">
         Continue with Google
       </Button>
       <p className="text-center text-sm">
