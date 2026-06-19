@@ -64,11 +64,7 @@ export default function LoginPage() {
           {loading ? "Signing in..." : "Sign in"}
         </Button>
       </form>
-      <Button
-        variant="outline"
-        onClick={onGoogle}
-        className="h-12 rounded-lg"
-      >
+      <Button variant="outline" onClick={onGoogle} className="h-12 rounded-lg">
         Continue with Google
       </Button>
       <p className="text-center text-sm">

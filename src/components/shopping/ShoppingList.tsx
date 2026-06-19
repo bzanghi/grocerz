@@ -130,13 +130,14 @@ export default function ShoppingList({ shoppingMode }: { shoppingMode?: boolean 
 
   const total = items.reduce((sum, it) => sum + (it.estimated_price ?? 0), 0);
   const done = items.filter((i) => i.is_checked).length;
+  const progress = items.length ? Math.round((done / items.length) * 100) : 0;
 
   return (
     <div className="flex flex-col gap-4">
       <div className="sticky top-14 z-10 -mx-4 glass p-4 elev-2">
         <div className="flex items-center justify-between text-sm">
           <span>
-            {done} of {items.length} items
+            {done} of {items.length} items ({progress}%)
           </span>
           <span className="font-medium">${total.toFixed(2)}</span>
         </div>
