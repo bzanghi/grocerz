@@ -122,7 +122,7 @@ export default function PantryPage() {
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="sticky top-0 z-10 -mx-4 bg-white p-4">
+      <div className="sticky top-0 z-10 -mx-4 glass p-4">
         <div className="flex items-center justify-between">
           <h1 className="text-xl font-semibold">Pantry</h1>
           <Link href="/dashboard" className="text-[#10B981] underline">
@@ -140,7 +140,7 @@ export default function PantryPage() {
         </Button>
       </form>
 
-      <div className="rounded-lg border">
+      <div className="rounded-xl glass elev-1">
         {!items.length ? (
           <div className="p-4 text-sm text-zinc-500">No pantry items yet.</div>
         ) : (

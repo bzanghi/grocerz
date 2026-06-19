@@ -3,6 +3,7 @@ import * as React from "react";
 import Link from "next/link";
 import AddItemForm from "@/components/shopping/AddItemForm";
 import NextDynamic from "next/dynamic";
+import ThemeToggle from "@/components/ThemeToggle";
 import { Switch } from "@/components/ui/switch";
 import QuickHistory from "@/components/shopping/QuickHistory";
 
@@ -16,12 +17,13 @@ export default function DashboardPage() {
   const [shoppingMode, setShoppingMode] = React.useState(false);
   return (
     <div className="flex flex-col gap-3">
-      <div className="sticky top-0 z-10 -mx-4 mb-2 bg-white p-4">
+      <div className="sticky top-0 z-10 -mx-4 mb-2 glass p-4">
         <div className="flex items-center justify-between">
           <h1 className="text-xl font-semibold">Shopping List</h1>
           <div className="flex items-center gap-3">
             <span className="text-sm text-zinc-600">Shopping Mode</span>
             <Switch checked={shoppingMode} onCheckedChange={(v) => setShoppingMode(Boolean(v))} />
+            <ThemeToggle />
             <Link href="/meals" className="text-[#10B981] underline">
               Meals
             </Link>
@@ -39,11 +41,17 @@ export default function DashboardPage() {
       </div>
       {!shoppingMode && (
         <>
-          <AddItemForm />
-          <QuickHistory />
+          <div className="glass elev-1 rounded-xl p-3">
+            <AddItemForm />
+          </div>
+          <div className="glass elev-1 rounded-xl">
+            <QuickHistory />
+          </div>
         </>
       )}
-      <ShoppingList shoppingMode={shoppingMode} />
+      <div className="glass elev-1 rounded-xl p-2">
+        <ShoppingList shoppingMode={shoppingMode} />
+      </div>
     </div>
   );
 }

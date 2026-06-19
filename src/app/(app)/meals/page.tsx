@@ -35,7 +35,7 @@ export default function MealsPage() {
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="sticky top-0 z-10 -mx-4 bg-white p-4">
+      <div className="sticky top-0 z-10 -mx-4 glass p-4">
         <div className="flex items-center justify-between">
           <h1 className="text-xl font-semibold">Meal Library</h1>
           <Link href="/dashboard" className="text-[#10B981] underline">
@@ -57,7 +57,7 @@ export default function MealsPage() {
 
       <div className="grid grid-cols-2 gap-3">
         {filtered.map((meal) => (
-          <Link key={meal.id} href={`/meals/${meal.id}`} className="rounded-lg border overflow-hidden">
+          <Link key={meal.id} href={`/meals/${meal.id}`} className="rounded-xl glass overflow-hidden elev-1">
             <div className="relative aspect-[4/3] bg-zinc-100">
               {meal.image_url && (
                 <Image src={meal.image_url} alt={meal.name} fill sizes="50vw" className="object-cover" />
