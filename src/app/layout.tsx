@@ -22,10 +22,11 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const themeScript = `(() => { try { var t = localStorage.getItem('theme') || 'dark'; var d = document.documentElement; if (t === 'system') { var m = window.matchMedia('(prefers-color-scheme: dark)'); d.classList.toggle('dark', m.matches); } else { d.classList.toggle('dark', t === 'dark'); } } catch(_){} })();`;
   return (
-    <html lang="en" className="dark">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-dvh bg-background text-foreground`}
-      >
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-dvh bg-background text-foreground`}>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         {children}
       </body>
     </html>
