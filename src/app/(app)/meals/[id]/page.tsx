@@ -83,6 +83,7 @@ export default function MealDetailPage() {
           .ilike("name", name);
 
         if (existing && existing.length > 0) {
+          // Merge quantities, summing compatible numeric values when possible.
           // Merge quantities where possible, otherwise concatenate them.
           const current = existing[0];
           const newQty = mergeQuantities(current.quantity, scaledQty);
