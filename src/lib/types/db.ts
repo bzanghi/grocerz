@@ -6,8 +6,25 @@ export type ShoppingItem = {
   category: string | null;
   is_checked: boolean;
   estimated_price: number | null;
+  completed_at?: string | null;
   created_at: string;
   created_by: string | null;
+};
+
+export type ShoppingTemplate = {
+  id: string;
+  household_id: string;
+  name: string;
+  created_at: string;
+  created_by: string | null;
+};
+
+export type ShoppingTemplateItem = {
+  id: string;
+  template_id: string;
+  name: string;
+  quantity: string | null;
+  category: string | null;
 };
 
 export type Meal = {
@@ -27,4 +44,15 @@ export type MealIngredient = {
   ingredient_name: string;
   base_quantity: string | null; // for 4 servings
   category: string | null;
+};
+
+export type PantryItem = {
+  id: string;
+  household_id: string;
+  name: string;
+  quantity: string | null;
+  category: string | null;
+  on_hand: boolean;
+  updated_at: string;
+  updated_by: string | null;
 };
