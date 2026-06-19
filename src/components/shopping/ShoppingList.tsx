@@ -81,7 +81,7 @@ export default function ShoppingList({ shoppingMode }: { shoppingMode?: boolean 
   const toggleChecked = async (item: ShoppingItem) => {
     const { error } = await supabase
       .from("shopping_items")
-      .update({ is_checked: !item.is_checked })
+      .update({ is_checked: !item.is_checked, completed_at: !item.is_checked ? new Date().toISOString() : null })
       .eq("id", item.id);
     if (error) toast.error(error.message);
   };
@@ -106,7 +106,7 @@ export default function ShoppingList({ shoppingMode }: { shoppingMode?: boolean 
           <li key={item.id} className="flex items-center gap-3 py-3">
             <Checkbox checked={item.is_checked} onCheckedChange={() => toggleChecked(item)} />
             <div className="flex-1">
-              <div className={`text-base ${item.is_checked ? "line-through text-zinc-400" : ""}`}>{item.name}</div>
+              <div className={`text-base ${item.is_checked ? "line-through text-zinc-400/70" : ""}`}>{item.name}</div>
               <div className="text-xs text-zinc-500">
                 {[item.quantity, item.category].filter(Boolean).join(" • ")}
               </div>
@@ -130,11 +130,10 @@ export default function ShoppingList({ shoppingMode }: { shoppingMode?: boolean 
 
   const total = items.reduce((sum, it) => sum + (it.estimated_price ?? 0), 0);
   const done = items.filter((i) => i.is_checked).length;
-  const progress = items.length ? Math.round((done / items.length) * 100) : 0;
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="sticky top-14 z-10 -mx-4 bg-white p-4 shadow-sm">
+      <div className="sticky top-14 z-10 -mx-4 glass p-4 elev-2">
         <div className="flex items-center justify-between text-sm">
           <span>
             {done} of {items.length} items
@@ -145,7 +144,7 @@ export default function ShoppingList({ shoppingMode }: { shoppingMode?: boolean 
 
       {categories.map((cat) => (
         <div key={cat}>
-          <div className="sticky top-28 z-0 -mx-4 bg-white px-4 py-2 text-xs font-semibold text-zinc-500">
+          <div className="sticky top-28 z-0 -mx-4 glass px-4 py-2 text-xs font-semibold text-zinc-500">
             {cat}
           </div>
           <ul className="flex flex-col divide-y">
@@ -155,7 +154,7 @@ export default function ShoppingList({ shoppingMode }: { shoppingMode?: boolean 
                 <li key={item.id} className="flex items-center gap-3 py-3">
                   <Checkbox checked={item.is_checked} onCheckedChange={() => toggleChecked(item)} />
                   <div className="flex-1">
-                    <div className={`text-base ${item.is_checked ? "line-through text-zinc-400" : ""}`}>{item.name}</div>
+                    <div className={`text-base ${item.is_checked ? "line-through text-zinc-400/70" : ""}`}>{item.name}</div>
                     <div className="text-xs text-zinc-500">
                       {[item.quantity, item.category].filter(Boolean).join(" • ")}
                     </div>
@@ -166,7 +165,7 @@ export default function ShoppingList({ shoppingMode }: { shoppingMode?: boolean 
 
           {/* Completed sub-section */}
           {grouped[cat].some((i) => i.is_checked) && (
-            <div className="mt-2 rounded-lg bg-zinc-50 p-2">
+            <div className="mt-2 rounded-lg glass p-2">
               <div className="mb-1 text-xs font-medium text-zinc-500">Completed</div>
               <ul className="flex flex-col divide-y">
                 {grouped[cat]
@@ -174,7 +173,7 @@ export default function ShoppingList({ shoppingMode }: { shoppingMode?: boolean 
                   .map((item) => (
                     <li key={item.id} className="flex items-center gap-3 py-2">
                       <Checkbox checked={item.is_checked} onCheckedChange={() => toggleChecked(item)} />
-                      <div className="flex-1 text-sm line-through text-zinc-400">{item.name}</div>
+                      <div className="flex-1 text-sm line-through text-zinc-400/70">{item.name}</div>
                     </li>
                   ))}
               </ul>
