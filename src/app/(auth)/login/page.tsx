@@ -35,7 +35,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex flex-col gap-6">
+    <div className="glass elev-2 mx-auto w-full max-w-sm rounded-2xl p-6 flex flex-col gap-6">
       <div className="text-center">
         <h1 className="text-2xl font-semibold">Welcome back</h1>
         <p className="text-sm text-zinc-500">Log in to continue</p>
@@ -64,11 +64,7 @@ export default function LoginPage() {
           {loading ? "Signing in..." : "Sign in"}
         </Button>
       </form>
-      <Button
-        variant="outline"
-        onClick={onGoogle}
-        className="h-12 rounded-lg border-[#F59E0B] text-[#F59E0B] hover:bg-[#FFF7ED]"
-      >
+      <Button variant="outline" onClick={onGoogle} className="h-12 rounded-lg">
         Continue with Google
       </Button>
       <p className="text-center text-sm">
